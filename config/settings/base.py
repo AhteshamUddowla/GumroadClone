@@ -317,5 +317,11 @@ SPECTACULAR_SETTINGS = {
 # Your stuff...
 # ------------------------------------------------------------------------------
 
+# Django Tailwind
 TAILWIND_APP_NAME = 'theme'
+# Set the path for the NPM binary executable file
 NPM_BIN_PATH = "D:\\Program Files\\nodejs\\npm.cmd"
+
+# stripe
+STRIPE_PUBLIC_KEY = env("STRIPE_PUBLIC_KEY")
+STRIPE_SECRET_KEY = env("STRIPE_SECRET_KEY")
