@@ -3,6 +3,8 @@ from django.urls import reverse
 
 # Create your models here.
 class Product(models.Model):
+    user = models.ForeignKey("users.User", on_delete=models.CASCADE,       related_name="products"
+    )
     name = models.CharField(max_length=100)
     description = models.TextField()
     cover = models.ImageField(blank=True, null=True, upload_to="product_covers/")
