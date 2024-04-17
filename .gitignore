@@ -66,6 +66,7 @@ target/
 
 # Environments
 .venv
+.env
 venv/
 ENV/
 
@@ -274,3 +275,4 @@ dump.rdb
 djgumroad/media/
 
 .pytest_cache/
+ngrok

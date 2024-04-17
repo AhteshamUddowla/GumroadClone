@@ -11,7 +11,7 @@ from drf_spectacular.views import SpectacularSwaggerView
 from rest_framework.authtoken.views import obtain_auth_token
 from djgumroad.products.views import (
     ProductListView, UserProductListView, ProductCreateView,
-    CreateCheckoutSessionView, SuccessView
+    CreateCheckoutSessionView, SuccessView, stripe_webhook
 )
 
 urlpatterns = [
@@ -22,6 +22,7 @@ urlpatterns = [
     path("p/", include('djgumroad.products.urls', namespace='products')),
     path("create-checkout-session/<slug>/", CreateCheckoutSessionView.as_view(), name="create-checkout-session"),
     path('success/', SuccessView.as_view(), name='success'),
+    path("webhooks/stripe/", stripe_webhook, name='stripe-webhook'),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management

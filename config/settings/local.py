@@ -14,7 +14,7 @@ SECRET_KEY = env(
     default="xYcQ0ePodhsNUTcO4VlNViHqUi1ZyhcuA08dQABCj3S8UPefvY5RVGtVVlFM8Ux9",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1"]  # noqa: S104
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "243a-122-152-54-36.ngrok-free.app"]  # noqa: S104
 
 # CACHES
 # ------------------------------------------------------------------------------
