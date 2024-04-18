@@ -5,9 +5,11 @@ from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView
 from django.views.generic import RedirectView
 from django.views.generic import UpdateView
-
+from django.views.generic import TemplateView
 from djgumroad.users.models import User
 
+class UserProfileView(LoginRequiredMixin, TemplateView):
+    template_name = "profile.html"
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
