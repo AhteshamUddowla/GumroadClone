@@ -99,7 +99,8 @@ class CreateCheckoutSessionView(generic.View):
 
         product_image_urls = []
         if product.cover:
-            product_image_urls.append(product.cover.url)
+            if not settings.DEBUG:
+                product_image_urls.append(product.cover.url)
 
         session = stripe.checkout.Session.create(
             customer=customer,
@@ -118,6 +119,12 @@ class CreateCheckoutSessionView(generic.View):
                     'quantity': 1,
                 }
             ],
+            payment_intent_data={
+                'application_fee_amount': 100,
+                'transfer_data': {
+                    'destination': product.user.stripe_account_id,
+                },
+            },
             mode='payment',
             success_url=domain + reverse("success"),
             cancel_url=domain + reverse("discover"),
@@ -136,6 +143,7 @@ class SuccessView(generic.TemplateView):
 @csrf_exempt
 def stripe_webhook(request, *args, **kwargs):
     CHECKOUT_SESSION_COMPLETED = "checkout.session.completed"
+    ACCOUNT_UPDATED = "account.updated"
     
     payload = request.body
     sig_header = request.META["HTTP_STRIPE_SIGNATURE"]
@@ -185,5 +193,6 @@ def stripe_webhook(request, *args, **kwargs):
                     recipient_list=[stripe_customer_email],
                     from_email="test@test.com"
                 )
-
+    elif event["type"] == ACCOUNT_UPDATED:
+        print(event)
     return HttpResponse()
