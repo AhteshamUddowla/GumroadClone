@@ -14,19 +14,23 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" />
+    <link rel="icon" href="{% static 'images/djgumroad.png' %}" />
     <link
       rel="stylesheet"
       href="{% static 'css/dist/styles.css' %}"
       type="text/css"
     />
 
+    <style>
+      [x-cloak] { display: none !important; }
+    </style>
     {% block css %}
     <!-- This file stores project-specific CSS -->
     <link href="{% static 'css/project.css' %}" rel="stylesheet" />
     {% endblock %}
     <!-- Le javascript
 		================================================== -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     {% block javascript %}
     <script defer src="{% static 'js/project.js' %}"></script>
     {% endblock javascript %}
@@ -38,20 +42,7 @@
       <div class="py-10">
         <main>
           <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            {% if messages %} {% for message in messages %}
-            <div
-              class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}"
-            >
-              {{ message }}<button
-                type="button"
-                class="close"
-                data-dismiss="alert"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            {% endfor %} {% endif %}
+            {% include 'messages.html' %}
             <div class="px-4 py-8 sm:px-0">
               {% block content %}
               <p>Use this document as a way to quick start any new project.</p>

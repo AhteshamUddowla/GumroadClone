@@ -16,14 +16,14 @@ stripe.api_key = settings.STRIPE_SECRET_KEY
 class UserProfileView(LoginRequiredMixin, TemplateView):
     template_name = "profile.html"
 
-    def get_context_data(self, **kwargs):
-        account = stripe.Account.retrieve(self.request.user.stripe_account_id)
-        details_submitted = account["details_submitted"]
-        context = super(UserProfileView, self).get_context_data(**kwargs)
-        context.update({
-            "details_submitted": details_submitted
-        })
-        return context
+    # def get_context_data(self, **kwargs):
+    #     account = stripe.Account.retrieve(self.request.user.stripe_account_id)
+    #     details_submitted = account["details_submitted"]
+    #     context = super(UserProfileView, self).get_context_data(**kwargs)
+    #     context.update({
+    #         "details_submitted": details_submitted
+    #     })
+    #     return context
 
 class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
